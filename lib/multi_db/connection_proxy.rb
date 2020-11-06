@@ -2,6 +2,9 @@ require 'active_record/connection_adapters/abstract/query_cache'
 
 module MultiDb
   class ConnectionProxy
+    include ActiveSupport::Callbacks
+    define_callbacks :checkout, :checkin
+
     include ActiveRecord::ConnectionAdapters::QueryCache
     include QueryCacheCompat
     extend ThreadLocalAccessors
